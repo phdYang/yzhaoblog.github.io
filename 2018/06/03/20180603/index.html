@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="代码," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="循环结构，是编程语言中最重要的结构，因为循环，我们才能写出复杂的程序，也是因为循环，我们的程序才能够实现所谓的代替重复性质的手工劳作而得以实现自动化。 所以，循环的本质就是代替重复性质的工作。 本文找寻了十几道典型的循环例题，每题去考虑如何使用for和while两种方式去实现。 用以帮助程序初学者理解，和自己回忆。 结尾会放置一道面试常问的顺时针打印数组的问题（也就是传说中的蛇形填数）。">
+<meta name="keywords" content="代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="循环这回事">
+<meta property="og:url" content="http://yzhao.top/2018/06/03/20180603/index.html">
+<meta property="og:site_name" content="洋仔的世界">
+<meta property="og:description" content="循环结构，是编程语言中最重要的结构，因为循环，我们才能写出复杂的程序，也是因为循环，我们的程序才能够实现所谓的代替重复性质的手工劳作而得以实现自动化。 所以，循环的本质就是代替重复性质的工作。 本文找寻了十几道典型的循环例题，每题去考虑如何使用for和while两种方式去实现。 用以帮助程序初学者理解，和自己回忆。 结尾会放置一道面试常问的顺时针打印数组的问题（也就是传说中的蛇形填数）。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yzhao.top/2018/06/03/20180603/img1.png">
+<meta property="og:updated_time" content="2018-06-03T14:31:19.985Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="循环这回事">
+<meta name="twitter:description" content="循环结构，是编程语言中最重要的结构，因为循环，我们才能写出复杂的程序，也是因为循环，我们的程序才能够实现所谓的代替重复性质的手工劳作而得以实现自动化。 所以，循环的本质就是代替重复性质的工作。 本文找寻了十几道典型的循环例题，每题去考虑如何使用for和while两种方式去实现。 用以帮助程序初学者理解，和自己回忆。 结尾会放置一道面试常问的顺时针打印数组的问题（也就是传说中的蛇形填数）。">
+<meta name="twitter:image" content="http://yzhao.top/2018/06/03/20180603/img1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yzhao.top/2018/06/03/20180603/"/>
+
+
+
+
+
+  <title>循环这回事 | 洋仔的世界</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洋仔的世界</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            记忆的时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yzhao.top/2018/06/03/20180603/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="洋仔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洋仔的世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">循环这回事</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-03T22:19:27+08:00">
+                2018-06-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-03T22:31:19+08:00">
+                2018-06-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/语言基础/" itemprop="url" rel="index">
+                    <span itemprop="name">语言基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/03/20180603/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/03/20180603/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,628
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>循环结构，是编程语言中最重要的结构，因为循环，我们才能写出复杂的程序，也是因为循环，我们的程序才能够实现所谓的代替重复性质的手工劳作而得以实现自动化。</p>
+<p>所以，循环的本质就是代替重复性质的工作。</p>
+<p>本文找寻了十几道典型的循环例题，每题去考虑如何使用for和while两种方式去实现。</p>
+<p>用以帮助程序初学者理解，和自己回忆。</p>
+<p>结尾会放置一道面试常问的顺时针打印数组的问题（也就是传说中的蛇形填数）。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="循环基础题目部分"><a href="#循环基础题目部分" class="headerlink" title="循环基础题目部分"></a>循环基础题目部分</h2><blockquote>
+<p>本部分目前有5道题，2道略难</p>
+</blockquote>
+<h3 id="求1000以内所有偶数的和-包括1000"><a href="#求1000以内所有偶数的和-包括1000" class="headerlink" title="求1000以内所有偶数的和(包括1000)"></a>求1000以内所有偶数的和(包括1000)</h3><p>while循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span></span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i&lt;=<span class="number">1000</span> :</span><br><span class="line">    sum=sum+i</span><br><span class="line">    i=i+<span class="number">2</span></span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure>
+<p>for循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">1001</span>,<span class="number">2</span>):</span><br><span class="line">    sum=sum+i</span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure>
+<p>这是很基础的循环遍历（使用到了计数变量）类型的题目。可以看出这种题目，for循环更加简洁。</p>
+<p>思考1：奇数的和？</p>
+<p>思考2：结合本部分最后一题思考求100以内素数的和？</p>
+<h3 id="逆序输出100以内的数字，数与数之间用空格分割（包括100）"><a href="#逆序输出100以内的数字，数与数之间用空格分割（包括100）" class="headerlink" title="逆序输出100以内的数字，数与数之间用空格分割（包括100）"></a>逆序输出100以内的数字，数与数之间用空格分割（包括100）</h3><p>while循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">100</span></span><br><span class="line"><span class="keyword">while</span> i&gt;=<span class="number">0</span> :</span><br><span class="line">    print(i,end=<span class="string">' '</span>)</span><br><span class="line">    i=i<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<p>for循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">    print(i,end=<span class="string">' '</span>)</span><br></pre></td></tr></table></figure>
+<p>依然是基础的循环遍历类型的题目。</p>
+<p>思考1：正序或者逆序输出奇偶数？</p>
+<p>思考2：如果数与数之间用逗号分割呢？</p>
+<h3 id="求N！（阶乘）"><a href="#求N！（阶乘）" class="headerlink" title="求N！（阶乘）"></a>求N！（阶乘）</h3><p>while循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rs = <span class="number">1</span></span><br><span class="line">i = <span class="number">1</span></span><br><span class="line">n = int(input(<span class="string">'求谁的阶乘？'</span>))</span><br><span class="line"><span class="keyword">while</span> i&lt;=n :</span><br><span class="line">    rs = rs*i</span><br><span class="line">    i=i+<span class="number">1</span></span><br><span class="line">print(rs)</span><br></pre></td></tr></table></figure>
+<p>for循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rs = <span class="number">1</span></span><br><span class="line">n = int(input(<span class="string">'求谁的阶乘？'</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">    rs = rs*i</span><br><span class="line">print(rs)</span><br></pre></td></tr></table></figure>
+<p>思考：注意本题目与求连加题目的区别</p>
+<h3 id="输出10以内的斐波那契数列（0-1-1-2-3-5-8…-）"><a href="#输出10以内的斐波那契数列（0-1-1-2-3-5-8…-）" class="headerlink" title="输出10以内的斐波那契数列（0 1 1 2 3 5 8…..）"></a>输出10以内的斐波那契数列（0 1 1 2 3 5 8…..）</h3><p>注：<strong>本题目略难</strong>。可以略过。但这是个经典题目，在后来的学习中还会继续出现。</p>
+<p>斐波那契是形如：</p>
+<script type="math/tex; mode=display">
+f(n) =
+        \begin{cases}
+        0,  & \text{n=0} \\
+        1, & \text{n=1} \\
+        f(n-1)+f(n-2), & \text{n=其他}
+        \end{cases}</script><p>while循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">0</span></span><br><span class="line">b = <span class="number">1</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i&lt;<span class="number">10</span>:</span><br><span class="line">    <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">        print(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">        print(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(a+b)</span><br><span class="line">        temp=a</span><br><span class="line">        a=b</span><br><span class="line">        b=temp+b</span><br><span class="line">    i=i+<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>for循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">0</span></span><br><span class="line">b = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">or</span> i==<span class="number">1</span>:</span><br><span class="line">        print(i)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(a+b)</span><br><span class="line">        temp = a</span><br><span class="line">        a = b</span><br><span class="line">        b = temp+b</span><br></pre></td></tr></table></figure>
+<p>思考1：本题目除了常规的计数变量的变换，还牵扯到了其他的计数器的变换。这里的逻辑需要好好思考。</p>
+<p>思考2：如何交换a和b两个数？</p>
+<h3 id="判断一个数是否为素数"><a href="#判断一个数是否为素数" class="headerlink" title="判断一个数是否为素数"></a>判断一个数是否为素数</h3><p>while循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">n = int(input(<span class="string">'请输入:'</span>))</span><br><span class="line">i=<span class="number">2</span></span><br><span class="line"><span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">    print(<span class="string">'No'</span>)</span><br><span class="line"><span class="keyword">elif</span> n==<span class="number">2</span>:</span><br><span class="line">    print(<span class="string">'Yes'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">while</span> n%i!=<span class="number">0</span>:</span><br><span class="line">        i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i==n:</span><br><span class="line">        print(<span class="string">'Yes'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'No'</span>)</span><br></pre></td></tr></table></figure>
+<p>for循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">n = int(input(<span class="string">'请输入:'</span>))</span><br><span class="line"><span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">    print(<span class="string">'No'</span>)</span><br><span class="line"><span class="keyword">elif</span> n==<span class="number">2</span>:</span><br><span class="line">    print(<span class="string">'Yes'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,n):</span><br><span class="line">        <span class="keyword">if</span> n%i==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> i==n<span class="number">-1</span>:</span><br><span class="line">        print(<span class="string">'Yes'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'No'</span>)</span><br></pre></td></tr></table></figure>
+<p>思考：本题目的while循环比for循环要简单。因为，这不是典型的遍历类循环，而是条件类循环。所以可以看到for循环的结束其实是受到循环内if的控制。而while循环本身就是循环和条件的统一体。</p>
+<p>合理选用for和while也是需要练习的，但从表达能力上来看，两者是可以等价的。</p>
+<p><strong>总结</strong>：单层循环没有什么需要练习的，非常基础。所以可以看到，单层循环需要和if等判断语句结合来达到使程序复杂的目的。</p>
+<h2 id="嵌套循环典型题目"><a href="#嵌套循环典型题目" class="headerlink" title="嵌套循环典型题目"></a>嵌套循环典型题目</h2><blockquote>
+<p>本部分共有7道题</p>
+</blockquote>
+<h3 id="输出如下图形（1）"><a href="#输出如下图形（1）" class="headerlink" title="输出如下图形（1）"></a>输出如下图形（1）</h3><script type="math/tex; mode=display">
+\begin{matrix}
+* \\
+* & * \\
+* & * & * \\
+* & * & * & * \\
+* & * & * & * & *
+\end{matrix}</script><p>while循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i&lt;<span class="number">5</span>:</span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> j&lt;i+<span class="number">1</span>:</span><br><span class="line">        print(<span class="string">'*'</span>,end=<span class="string">''</span>)</span><br><span class="line">        j=j+<span class="number">1</span></span><br><span class="line">    i=i+<span class="number">1</span></span><br><span class="line">    print(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p>for循环版：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>):</span><br><span class="line">        print(<span class="string">'*'</span>,end=<span class="string">''</span>)</span><br><span class="line">    print(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p>这样的循环遍历更加可以看出来for循环的方便。</p>
+<h3 id="输出如下图形（2）"><a href="#输出如下图形（2）" class="headerlink" title="输出如下图形（2）"></a>输出如下图形（2）</h3><script type="math/tex; mode=display">
+\begin{matrix}
+* & * & * & * & * \\
+* & * & * & * \\
+* & * & * \\
+* & * \\
+*
+\end{matrix}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">        print(<span class="string">'*'</span>,end=<span class="string">''</span>)</span><br><span class="line">    print(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="输出如下图形（3）"><a href="#输出如下图形（3）" class="headerlink" title="输出如下图形（3）"></a>输出如下图形（3）</h3><script type="math/tex; mode=display">
+\begin{matrix}
+   &    &    &    & * \\
+   &    &    & * & * \\
+   &    & * & * & * \\ 
+   & * & * & * & *\\
+* & * & * & * & *
+\end{matrix}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        <span class="keyword">if</span> j&gt;=<span class="number">5</span>-i<span class="number">-1</span>:</span><br><span class="line">            print(<span class="string">'*'</span>,end=<span class="string">''</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">' '</span>,end=<span class="string">''</span>)</span><br><span class="line">    print(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="输出如下图形（4）"><a href="#输出如下图形（4）" class="headerlink" title="输出如下图形（4）"></a>输出如下图形（4）</h3><script type="math/tex; mode=display">
+\begin{matrix}
+* & *  & *  & *  & * \\
+   & *  & *  & * & * \\
+   &    & *   & * & * \\ 
+   &    &      & * & *\\
+  &     &     &     & *
+\end{matrix}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        <span class="keyword">if</span> j&gt;=i:</span><br><span class="line">            print(<span class="string">'*'</span>,end=<span class="string">''</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">' '</span>,end=<span class="string">''</span>)</span><br><span class="line">    print(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="输出如下图形（5）"><a href="#输出如下图形（5）" class="headerlink" title="输出如下图形（5）"></a>输出如下图形（5）</h3><script type="math/tex; mode=display">
+\begin{matrix}
+   &  &  &  &*&  &  &  &  & \\
+   &  &  &*&*&*&  &  &  & \\
+   &  &*&*&*&*&*&  &  & \\
+   &*&*&*&*&*&*&*&  & \\
+ *&*&*&*&*&*&*&*&*&    
+\end{matrix}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">9</span>):</span><br><span class="line">        <span class="keyword">if</span> j&gt;=<span class="number">4</span>-i <span class="keyword">and</span> j&lt;=<span class="number">4</span>+i:</span><br><span class="line">            print(<span class="string">'*'</span>,end=<span class="string">''</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">' '</span>,end=<span class="string">''</span>)</span><br><span class="line">    print(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>思考</strong>：上述5类图形如果输出层数为任意值应该怎么编写？</p>
+<h3 id="输出九九乘法表"><a href="#输出九九乘法表" class="headerlink" title="输出九九乘法表"></a>输出九九乘法表</h3><p>如下图所示：</p>
+<img src="/2018/06/03/20180603/img1.png" title="九九乘法表">
+<p>（图片来源于网络）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">9</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>):</span><br><span class="line">        print(j+<span class="number">1</span>,<span class="string">'x'</span>,i+<span class="number">1</span>,<span class="string">'='</span>,(i+<span class="number">1</span>)*(j+<span class="number">1</span>),end=<span class="string">' '</span>)</span><br><span class="line">    print(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="水仙花数"><a href="#水仙花数" class="headerlink" title="水仙花数"></a>水仙花数</h3><p>找出1000以内的所有水仙花数。</p>
+<p>水仙花数是指，一个n位数，每个位置上的数字的n次幂的和等于它本身的数字。如：<script type="math/tex">153 = 1^3 + 5^3 +3^3</script></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">            <span class="keyword">if</span> i**<span class="number">3</span>+j**<span class="number">3</span>+k**<span class="number">3</span>==i*<span class="number">100</span>+j*<span class="number">10</span>+k :</span><br><span class="line">                print(i*<span class="number">100</span>+j*<span class="number">10</span>+k)</span><br></pre></td></tr></table></figure>
+<p>思考：其他的解法？单层循环可以么？</p>
+<h2 id="蛇形填数（顺时针）"><a href="#蛇形填数（顺时针）" class="headerlink" title="蛇形填数（顺时针）"></a>蛇形填数（顺时针）</h2><p>给定nxn矩阵，按照顺时针的方式，从1开始填满该矩阵。</p>
+<p>若n=5，则需要将1-25顺时针填入矩阵：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1&2&3&4&5\\
+16&17&18&19&6\\
+15&24&25&20&7\\
+14&23&22&21&8 \\
+13&12&11&10&9
+\end{bmatrix}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">5</span></span><br><span class="line">list = [([<span class="number">0</span>] * n) <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]</span><br><span class="line">c = <span class="number">1</span> <span class="comment">#需要填入的数</span></span><br><span class="line">t = <span class="number">0</span> <span class="comment">#循环的圈数</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line">j = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> c&lt;=n*n :</span><br><span class="line">    <span class="keyword">while</span> j&lt;n-t:</span><br><span class="line">        list[i][j]=c</span><br><span class="line">        j = j+<span class="number">1</span></span><br><span class="line">        c = c+<span class="number">1</span></span><br><span class="line">    i = i+<span class="number">1</span></span><br><span class="line">    j = j<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> i&lt;n-t:</span><br><span class="line">        list[i][j] = c</span><br><span class="line">        i = i+<span class="number">1</span></span><br><span class="line">        c = c+<span class="number">1</span></span><br><span class="line">    i = i<span class="number">-1</span></span><br><span class="line">    j = j<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> j&gt;=t:</span><br><span class="line">        list[i][j] = c</span><br><span class="line">        j = j - <span class="number">1</span></span><br><span class="line">        c = c + <span class="number">1</span></span><br><span class="line">    i = i<span class="number">-1</span></span><br><span class="line">    j = j+<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> i&gt;=t+<span class="number">1</span>:</span><br><span class="line">        list[i][j] = c</span><br><span class="line">        i = i - <span class="number">1</span></span><br><span class="line">        c = c + <span class="number">1</span></span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line">    j = j + <span class="number">1</span></span><br><span class="line">    t = t + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span><br><span class="line">        print(list[i][j],end=<span class="string">' '</span>)</span><br><span class="line">    print(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p>思考1：逆时针如何填数？</p>
+<p>思考2：如何顺时针或者逆时针输出给定的数组？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="洋仔 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎大家加入洋仔的生活馆</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/代码/" rel="tag"># 代码</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/30/20180530/" rel="next" title="这一路坎坷的挂面经历">
+                <i class="fa fa-chevron-left"></i> 这一路坎坷的挂面经历
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5af12814ad30465d" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.gif"
+                alt="洋仔" />
+            
+              <p class="site-author-name" itemprop="name">洋仔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phdYang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ph.d_yang@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/yZhao44140852" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yZhao1034" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/5198838054" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/yang-zhao-95-74" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-gratipay"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ruanyifeng.com/" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#循环基础题目部分"><span class="nav-number">1.</span> <span class="nav-text">循环基础题目部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求1000以内所有偶数的和-包括1000"><span class="nav-number">1.1.</span> <span class="nav-text">求1000以内所有偶数的和(包括1000)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆序输出100以内的数字，数与数之间用空格分割（包括100）"><span class="nav-number">1.2.</span> <span class="nav-text">逆序输出100以内的数字，数与数之间用空格分割（包括100）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求N！（阶乘）"><span class="nav-number">1.3.</span> <span class="nav-text">求N！（阶乘）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出10以内的斐波那契数列（0-1-1-2-3-5-8…-）"><span class="nav-number">1.4.</span> <span class="nav-text">输出10以内的斐波那契数列（0 1 1 2 3 5 8…..）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断一个数是否为素数"><span class="nav-number">1.5.</span> <span class="nav-text">判断一个数是否为素数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套循环典型题目"><span class="nav-number">2.</span> <span class="nav-text">嵌套循环典型题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输出如下图形（1）"><span class="nav-number">2.1.</span> <span class="nav-text">输出如下图形（1）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出如下图形（2）"><span class="nav-number">2.2.</span> <span class="nav-text">输出如下图形（2）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出如下图形（3）"><span class="nav-number">2.3.</span> <span class="nav-text">输出如下图形（3）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出如下图形（4）"><span class="nav-number">2.4.</span> <span class="nav-text">输出如下图形（4）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出如下图形（5）"><span class="nav-number">2.5.</span> <span class="nav-text">输出如下图形（5）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出九九乘法表"><span class="nav-number">2.6.</span> <span class="nav-text">输出九九乘法表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#水仙花数"><span class="nav-number">2.7.</span> <span class="nav-text">水仙花数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#蛇形填数（顺时针）"><span class="nav-number">3.</span> <span class="nav-text">蛇形填数（顺时针）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">洋仔</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">9.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'VAqk50mRnUQd9pCYaWTxu6a0-gzGzoHsz',
+        appKey: 'rSL41zX6UpBeI7qzci23zzDn',
+        placeholder: '可以匿名；也可以告诉我你是谁',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
