@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="科研," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文主要记录的内容是最近查阅的一些关于序列数据的分析、分类、检测、预测的一些文章，在此做一个总结性质的整理。 疏漏再所难免。不要作为指导标准。 还应该以参考文献为主。">
+<meta name="keywords" content="科研">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读综述（关于序列数据）">
+<meta property="og:url" content="http://yzhao.top/2018/10/27/20181026/index.html">
+<meta property="og:site_name" content="洋仔的世界">
+<meta property="og:description" content="本文主要记录的内容是最近查阅的一些关于序列数据的分析、分类、检测、预测的一些文章，在此做一个总结性质的整理。 疏漏再所难免。不要作为指导标准。 还应该以参考文献为主。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-26T16:08:28.301Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="论文阅读综述（关于序列数据）">
+<meta name="twitter:description" content="本文主要记录的内容是最近查阅的一些关于序列数据的分析、分类、检测、预测的一些文章，在此做一个总结性质的整理。 疏漏再所难免。不要作为指导标准。 还应该以参考文献为主。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yzhao.top/2018/10/27/20181026/"/>
+
+
+
+
+
+  <title>论文阅读综述（关于序列数据） | 洋仔的世界</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洋仔的世界</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            记忆的时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yzhao.top/2018/10/27/20181026/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="洋仔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洋仔的世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">论文阅读综述（关于序列数据）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-27T00:04:48+08:00">
+                2018-10-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-27T00:08:28+08:00">
+                2018-10-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/27/20181026/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/27/20181026/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,330
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文主要记录的内容是最近查阅的一些关于序列数据的分析、分类、检测、预测的一些文章，在此做一个总结性质的整理。</p>
+<p>疏漏再所难免。不要作为指导标准。</p>
+<p>还应该以参考文献为主。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="序列数据"><a href="#序列数据" class="headerlink" title="序列数据"></a>序列数据</h2><p>来自于百度百科<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>的定义：时间序列数据（time series data）是在不同时间上收集到的数据，这类数据是按时间顺序收集到的，用于所描述现象随时间变化的情况。这类数据反映了某一事物、现象等随时间的变化状态或程度。很多计量经济学的模型也用到了时间序列数据。</p>
+<p>时间序列（Time Series）是我们在日常生活和社会工作中十分常见的一种数据，它是通过将一系列时间点上的观测值按等时间间隔测量来获取的数据集合，比如商业活动中，服装公司的年销售量，日股票的收盘价格； 气象学中某城市的年降水量，月平均气温等等，因此对时间序列的研究存在于各行各业。所谓时间序列分析（Time Series Analysis）是指一种<strong>动态数据</strong>处理的统计学方法，研究数据序列所遵从的统计规律，以用于解决具体行业的实际问题。</p>
+<p>在实际工作中，时间序列分析的目的通常有两个，一是要发现产生观测序列的随机机制，即建立数据生成模型，就是我们通常所说的数据建模；二是基于序列的历史数据，以及可能对结果产生影响的其他相关序列，对序列未来的可能取值做出预测。</p>
+<p>我的主要目的，就是想要基于历史数据，对序列未来的可能取值做出预测。</p>
+<h2 id="关于几个基本概念的阐述"><a href="#关于几个基本概念的阐述" class="headerlink" title="关于几个基本概念的阐述"></a>关于几个基本概念的阐述</h2><p><strong>时间序列数据挖掘</strong>(Time Series Data Mining，TSDM)就是要从大量的时间序列数据中提取人们事先不知道的、与时间属性相关的有用信息和知识，用于指导人们的社会、经济、军事和生活等活动。在<strong>时间序列挖掘</strong>中，”规则”之所以被发现是因为有足够多的数据支持。因此时间序列的挖掘方法具有广泛的“经验”基础，但缺乏严格的理论基础。同时由于各种干扰因素的影响，数据中会存在一些“假”规则，因此发现的“规则”一般需要进行验证。</p>
+<p>由于挖掘方法基于<strong>归纳</strong>的思想，直接由数据驱动，因而它常常可以撇开一些假设条件，如不需正态假设、平稳假设、线性假设等。最后，如何表达挖掘出来的知识也是需要考虑的。目前主要的表达方法有If-Then规则、决策树、贝叶斯网络以及神经网络等。</p>
+<p><strong>时间序列挖掘</strong>的基本思路为:针对实际的大量序列数据，根据应用目的，选用相应的挖掘方法，从序列数据中发现隐含的规则，再以这些规则对序列未来的变化进行预测或描述</p>
+<p>根据挖掘算法的考量，我们首要的任务就是选择合适的挖掘算法，挖掘出规则，从而利用这些规则进行预测。</p>
+<p>那我的一个可能的方向就是，选择合适的挖掘算法，直接利用该挖掘算法挖掘出来的规则进行预测。<strong>应用点</strong>在预测，而<strong>研究工作点</strong>在挖掘。</p>
+<p>而<strong>时间序列挖掘</strong>目前的研究主要集中在相似性检索、序列分割、频繁模式发现、多粒度结构模式发现、异常数据检测等方面。</p>
+<p>而<strong>时间序列分类问题</strong>解决的是，给定一条序列数据，赋予该序列某个离散标记。</p>
+<p><strong>序列数据预测</strong>，系统建模或时间序列建模的主要目的之一就是预测，时间序列的预测是指，在序列<script type="math/tex">{x_t}</script>中，如果<script type="math/tex">x_t</script>已知，要求对<script type="math/tex">t+l (l > 0)</script>的未来数值<script type="math/tex">x_{t+l}</script>进行预测<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
+<h2 id="几篇论文的阐述"><a href="#几篇论文的阐述" class="headerlink" title="几篇论文的阐述"></a>几篇论文的阐述</h2><p>在贾<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>等人的综述中，时间序列分类就是给定一个未知类别的时间序列，将其划分到某些预定义的类别之中。许多分类算法在时间序列中都<br>有应用，如决策树、神经网络、贝叶斯分类器、分类器融合。</p>
+<p>原<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>的主要工作是时间序列数据的分类算法的研究，主要研究了shapelets的有关的一些算法和优化，其研究了时间序列的表示方法和分类算法，在时间序列中的距离度量不是欧式距离而是DTW（Dynamic Time Wraping）。</p>
+<p>这一篇论文实际上应该看作第一次阅读偏离的一篇文章，其中关于DTW的阐述和时间序列的表示可以借鉴，但应当致力于预测算法的建模与评价指标。</p>
+<p>而在预测方面，贾<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>等人认为时间序列预测技术大体分为：传统的线性时间序列预测技术和非线性时间序列预测技术。这里包含的方法有自回归模型、自回归滑动平均模型、求和自回归滑动平均模型、季节调整模型、混沌时间序列预测、模糊神经网络、径向基函数网络、小波神经网络、积单元神经网络、滑动窗口二次自回归模型、基于云模型的时间序列预测。</p>
+<p>在Tang<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup>等人的Energy efficient job scheduling with workload prediction on cloud data center一文中，他们在自己构建的节能数据中心系统中使用了一种<strong>线性回归</strong>和<strong>小波神经网络</strong>的方法的预测方法来预测云数据中心的短期工作量。在仿真环境有良好的性能。</p>
+<p>在宋<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup>等人的基于压缩感知的时间序列缺失数据预测算法一文中，提出了一种算法，该算法利用时间序列的时域平滑特性来设计稀疏表示基，从而将缺失预测问题转化为稀疏向量恢复问题。</p>
+<p>在代<sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup>等人采用 LSTM 网络的电力变压器运行状态预测方法研究一文中，采用<strong>模糊综合评判思想</strong>对电力变压器运行状态进行评估，并以<strong>模糊综合隶属度</strong>为数据标签建立基于长短时记忆网络的电力变压器状态预测模型，以发掘<strong>特征参量</strong>与<strong>变压器状态</strong>之间的<strong>对应关系</strong>及模型预测参数。1周预测准确率达94.4%，1个月状态预测准确率达81.2%。采用条件熵来计算时间轴上的依赖性。</p>
+<p>在易<sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup>等人的基于多变量LSTM的工业传感器时序数据预测，针对工业设备温度、压力和电流强度等时序数据预测问题，提出了一种基于多变量分析的长短时记忆神经网络时序预测方法。采用RMSE（平方根误差）和MAPE（平均绝对百分误差）。</p>
+<p>在杨谕黔<sup id="fnref:9"><a href="#fn:9" rel="footnote">9</a></sup>的硕士毕业论文多维时间序列学习建模与预测分析一文说，提出了一个高维不完整时间序列频率聚类预测方法，首先小波对高维时间序列数据去噪，用离散傅里叶变换和窗口策略提取频率特征，再聚类。</p>
+<p>在贾朝龙<sup id="fnref:10"><a href="#fn:10" rel="footnote">10</a></sup>的博士毕业论文铁路轨道不平顺挖掘及其时间序列趋势预测研究一文中，采用聚类分析方法进行异常数据识别，提出基于趋势相似性的数据偏移校正算法，基于异常度的局部异常值识别及消除噪声，采用小波分解重构方法对时间序列进行分解重构，对原始数据、标准差数据、标准差小波分解数据、标准差近似序列数据聚类分析，并提出模式特征。在<strong>预测</strong>阶段，基于非等时距（轨道不平顺时间序列的非等时距特征）短期历史趋势的时间序列分段线性递推模型。</p>
+<p>在Song<sup id="fnref:11"><a href="#fn:11" rel="footnote">11</a></sup>等人的Deep r-th Root of Rank Supervised Joint Binary Embedding for Multivariate Time Series Retrieval一文中，给定原始多变量时间序列片段，使用长短期记忆（LSTM）单元来编码时间动态，并利用卷积神经网络（CNN）来编码不同<strong>时间序列对</strong>（传感器）之间的相关性（相互作用）。然后使用二元联合嵌入结合二者。同时开发了一种r-root损失函数。</p>
+<p>在David Hallac<sup id="fnref:12"><a href="#fn:12" rel="footnote">12</a></sup>等人的Toeplitz Inverse Covariance-Based Clustering of Multivariate Time Series Data一文中，提出了基于模型的聚类方法（基于Toeplitz逆协方差的聚类方法），同时<strong>分割</strong>和<strong>聚类</strong>时间序列。</p>
+<p>在Wang<sup id="fnref:13"><a href="#fn:13" rel="footnote">13</a></sup>等人的Multilevel Wavelet Decomposition Network for Interpretable Time Series Analysis一文中，提出了基于小波的神经网络架构，用来构建时间序列分析的频率感知深度模型。基于此，进一步提出了残差分类流和多频长短期记忆，用于分类和预测。</p>
+<p>在Xu<sup id="fnref:14"><a href="#fn:14" rel="footnote">14</a></sup>等人的RAIM: Recurrent Attentive and Intensive Model of Multimodal Patient Monitoring Data一文中，提出了循环注意和强化模型（RAIM），用于联合分析连续监测数据和离散临床事件，使用AUC-ROC计算预测补偿值。</p>
+<p>在Li<sup id="fnref:15"><a href="#fn:15" rel="footnote">15</a></sup>等人的TATC: Predicting Alzheimer’s Disease with Actigraphy Data一文中，提出了时间感知的TICC和CNN解决方案，是一种基于神经注意的深度学习的多变量时间序列分类算法，使之可以从活动记录仪器的数据中预测AD（Alzheimer’s Disease，阿尔茨海默病）。</p>
+<p>在zhang<sup id="fnref:16"><a href="#fn:16" rel="footnote">16</a></sup>等人的Email Category Prediction一文中，通过神经网络预测将来在固定大小的时间窗口内到达的电子邮件类别，考虑了多层感知机（MLP）和长短期记忆（LSTM）。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>截至目前，2018年10月25日，翻阅了大约14篇文章，有关于时间序列的分类综述，也有时间序列挖掘的综述性文章，有分别应用在负载预测、电力变压器预测、工业传感器数据预测、轨道不平顺预测、邮件等一些简单的应用类文章，也有应用在临床活动记录仪数据预测和阿尔茨海默病的预测都发表在KDD2018的文章，同时也有利用不同的聚类方法对时间序列进行分割的方法，还有对时间序列进行分析之后提出的各种网络方法。</p>
+<p>算是自己初步打开了论文阅读的大门。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">https://baike.baidu.com/item/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%95%B0%E6%8D%AE</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">贾澎涛,何华灿,刘丽,孙涛.时间序列数据挖掘综述[J].计算机应用研究,2007(11):15-18+29.</span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;">张树京. 《时间序列分析简明教程》[M]. 北京：清华大学出版社</span><a href="#fnref:3" rev="footnote"> ↩</a></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">4.</span><span style="display: inline-block; vertical-align: top;">原继东.时间序列分类算法研究[D].北京交通大学,2016.</span><a href="#fnref:4" rev="footnote"> ↩</a></li><li id="fn:5"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">5.</span><span style="display: inline-block; vertical-align: top;">Tang X, Liao X, Zheng J, et al. Energy efficient job scheduling with workload prediction on cloud data center[J]. Cluster Computing, 2018: 1-13.</span><a href="#fnref:5" rev="footnote"> ↩</a></li><li id="fn:6"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">6.</span><span style="display: inline-block; vertical-align: top;">宋晓样, 郭艳, 李宁, 等. 基于压缩感知的时间序列缺失数据预测算法[J]. 计算机科学, 2019, 6.</span><a href="#fnref:6" rev="footnote"> ↩</a></li><li id="fn:7"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">7.</span><span style="display: inline-block; vertical-align: top;">代杰杰, 宋辉, 盛戈皞, 等. 采用 LSTM 网络的电力变压器运行状态预测方法研究[J]. 高电压技术, 2018, 44(4): 1099-1106.</span><a href="#fnref:7" rev="footnote"> ↩</a></li><li id="fn:8"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">8.</span><span style="display: inline-block; vertical-align: top;">易利容, 王绍宇, 殷丽丽, 等. 基于多变量 LSTM 的工业传感器时序数据预测[J]. 收藏, 2018, 5: 004.</span><a href="#fnref:8" rev="footnote"> ↩</a></li><li id="fn:9"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">9.</span><span style="display: inline-block; vertical-align: top;">杨谕黔. 多维时间序列学习建模与预测分析[D]. 北京交通大学, 2014.</span><a href="#fnref:9" rev="footnote"> ↩</a></li><li id="fn:10"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">10.</span><span style="display: inline-block; vertical-align: top;">贾朝龙. 铁路轨道不平顺数据挖掘及其时间序列趋势预测研究[D]. 北京交通大学, 2013.</span><a href="#fnref:10" rev="footnote"> ↩</a></li><li id="fn:11"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">11.</span><span style="display: inline-block; vertical-align: top;">Song D, Xia N, Cheng W, et al. Deep r-th Root of Rank Supervised Joint Binary Embedding for Multivariate Time Series Retrieval[C]//Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining. ACM, 2018: 2229-2238.</span><a href="#fnref:11" rev="footnote"> ↩</a></li><li id="fn:12"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">12.</span><span style="display: inline-block; vertical-align: top;">Hallac D, Vare S, Boyd S, et al. Toeplitz inverse covariance-based clustering of multivariate time series data[C]//Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. ACM, 2017: 215-223.</span><a href="#fnref:12" rev="footnote"> ↩</a></li><li id="fn:13"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">13.</span><span style="display: inline-block; vertical-align: top;">Wang J, Wang Z, Li J, et al. Multilevel wavelet decomposition network for interpretable time series analysis[C]//Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining. ACM, 2018: 2437-2446.</span><a href="#fnref:13" rev="footnote"> ↩</a></li><li id="fn:14"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">14.</span><span style="display: inline-block; vertical-align: top;">Xu Y, Biswal S, Deshpande S R, et al. RAIM: Recurrent Attentive and Intensive Model of Multimodal Patient Monitoring Data[C]//Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining. ACM, 2018: 2565-2573.</span><a href="#fnref:14" rev="footnote"> ↩</a></li><li id="fn:15"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">15.</span><span style="display: inline-block; vertical-align: top;">Li J, Rong Y, Meng H, et al. TATC: Predicting Alzheimer's Disease with Actigraphy Data[C]//Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining. ACM, 2018: 509-518.</span><a href="#fnref:15" rev="footnote"> ↩</a></li><li id="fn:16"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">16.</span><span style="display: inline-block; vertical-align: top;">Zhang A, Garcia-Pueyo L, Wendt J B, et al. Email Category Prediction[C]//Proceedings of the 26th International Conference on World Wide Web Companion. International World Wide Web Conferences Steering Committee, 2017: 495-503.</span><a href="#fnref:16" rev="footnote"> ↩</a></li></ol></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="洋仔 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎大家加入洋仔的生活馆</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/科研/" rel="tag"># 科研</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/03/20180603/" rel="next" title="循环这回事">
+                <i class="fa fa-chevron-left"></i> 循环这回事
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5af12814ad30465d" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.gif"
+                alt="洋仔" />
+            
+              <p class="site-author-name" itemprop="name">洋仔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phdYang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ph.d_yang@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/yZhao44140852" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yZhao1034" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/5198838054" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/yang-zhao-95-74" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-gratipay"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ruanyifeng.com/" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#序列数据"><span class="nav-number">1.</span> <span class="nav-text">序列数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于几个基本概念的阐述"><span class="nav-number">2.</span> <span class="nav-text">关于几个基本概念的阐述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几篇论文的阐述"><span class="nav-number">3.</span> <span class="nav-text">几篇论文的阐述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">洋仔</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">13.1k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'VAqk50mRnUQd9pCYaWTxu6a0-gzGzoHsz',
+        appKey: 'rSL41zX6UpBeI7qzci23zzDn',
+        placeholder: '可以匿名；也可以告诉我你是谁',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
