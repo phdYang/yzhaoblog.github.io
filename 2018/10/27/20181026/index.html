@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="洋仔的世界">
 <meta property="og:description" content="本文主要记录的内容是最近查阅的一些关于序列数据的分析、分类、检测、预测的一些文章，在此做一个总结性质的整理。 疏漏再所难免。不要作为指导标准。 还应该以参考文献为主。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-26T16:15:48.416Z">
+<meta property="og:updated_time" content="2018-10-26T16:17:05.425Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读综述（关于序列数据）">
 <meta name="twitter:description" content="本文主要记录的内容是最近查阅的一些关于序列数据的分析、分类、检测、预测的一些文章，在此做一个总结性质的整理。 疏漏再所难免。不要作为指导标准。 还应该以参考文献为主。">
@@ -315,7 +315,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-27T00:15:48+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-27T00:17:05+08:00">
                 2018-10-27
               </time>
             
@@ -435,7 +435,7 @@
 <p>而<strong>时间序列挖掘</strong>目前的研究主要集中在相似性检索、序列分割、频繁模式发现、多粒度结构模式发现、异常数据检测等方面。</p>
 <p>而<strong>时间序列分类问题</strong>解决的是，给定一条序列数据，赋予该序列某个离散标记。</p>
 <p><strong>序列数据预测</strong>，系统建模或时间序列建模的主要目的之一就是预测，时间序列的预测是指，在序列<script type="math/tex">{x_t}</script>中，如果<script type="math/tex">x_t</script>已知，要求对<script type="math/tex">t+l (l > 0)</script>的未来数值<script type="math/tex">x_{t+l}</script>进行预测<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
-<h2 id="几篇论文的阐述"><a href="#几篇论文的阐述" class="headerlink" title="几篇论文的阐述"></a>几篇论文的阐述</h2><p>在贾<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>等人的综述中，时间序列分类就是给定一个未知类别的时间序列，将其划分到某些预定义的类别之中。许多分类算法在时间序列中都<br>有应用，如决策树、神经网络、贝叶斯分类器、分类器融合。</p>
+<h2 id="几篇论文的阐述"><a href="#几篇论文的阐述" class="headerlink" title="几篇论文的阐述"></a>几篇论文的阐述</h2><p>在贾<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>等人的综述中，时间序列分类就是给定一个未知类别的时间序列，将其划分到某些预定义的类别之中。许多分类算法在时间序列中都有应用，如决策树、神经网络、贝叶斯分类器、分类器融合。</p>
 <p>原<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>的主要工作是时间序列数据的分类算法的研究，主要研究了shapelets的有关的一些算法和优化，其研究了时间序列的表示方法和分类算法，在时间序列中的距离度量不是欧式距离而是DTW（Dynamic Time Wraping）。</p>
 <p>这一篇论文实际上应该看作第一次阅读偏离的一篇文章，其中关于DTW的阐述和时间序列的表示可以借鉴，但应当致力于预测算法的建模与评价指标。</p>
 <p>而在预测方面，贾<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>等人认为时间序列预测技术大体分为：传统的线性时间序列预测技术和非线性时间序列预测技术。这里包含的方法有自回归模型、自回归滑动平均模型、求和自回归滑动平均模型、季节调整模型、混沌时间序列预测、模糊神经网络、径向基函数网络、小波神经网络、积单元神经网络、滑动窗口二次自回归模型、基于云模型的时间序列预测。</p>
