@@ -96,7 +96,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yzhao.top/2019/06/13/使用keras实现时序数据分类的应用/1560430346314.png">
 <meta property="og:image" content="http://yzhao.top/2019/06/13/使用keras实现时序数据分类的应用/1560447151140.png">
-<meta property="og:updated_time" content="2019-06-13T17:40:09.331Z">
+<meta property="og:updated_time" content="2019-06-13T17:43:51.685Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用keras实现时序数据分类的应用">
 <meta name="twitter:description" content="深度学习火遍了全球，但我一直对其不甚感冒。 但，迫于无奈，终于开始使用循环神经网络进行有关序列数据的分类、预测、异常检测等任务">
@@ -318,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-14T01:40:09+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-14T01:43:51+08:00">
                 2019-06-14
               </time>
             
@@ -383,7 +383,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,121
+                  1,129
                 </span>
               
 
@@ -434,10 +434,10 @@
 <li>Standing</li>
 <li>Laying</li>
 </ul>
-<p>数据由9个通道构成，这9个通道分别为x, y,z三个方向的线性加速度和加速度以及总速度构成，每个样本的序列为长度为128。此数据集的训练集维度为[7352, 9, 128]，测试集的维度为[2947, 9, 128]。六个类别的比例分别为：1226:1073:986:1286:1374:1407。</p>
+<p>数据由9个通道构成，这9个通道分别为x, y,z三个方向的线性加速度和角速度以及总速度构成，每个样本的序列为长度为128。此数据集的训练集维度为[7352, 128, 9]，测试集的维度为[2947, 128, 9]。六个类别的比例分别为：1226:1073:986:1286:1374:1407。</p>
 <p>如下，我们展示walking的波形图：</p>
 <img src="/2019/06/13/使用keras实现时序数据分类的应用/1560430346314.png" title="walking线性加速的x轴">
-<h1 id="2-使用Keras搭建一维卷积"><a href="#2-使用Keras搭建一维卷积" class="headerlink" title="2 使用Keras搭建一维卷积"></a>2 使用Keras搭建一维卷积</h1><p>本文数据样本是一个9*128的序列，每个样本可能由六个类别，所以此问题可以直接抽象为多分类问题。</p>
+<h1 id="2-使用Keras搭建一维卷积"><a href="#2-使用Keras搭建一维卷积" class="headerlink" title="2 使用Keras搭建一维卷积"></a>2 使用Keras搭建一维卷积</h1><p>本文数据样本是一个128*9的序列，序列长度为128，通道数为9，数据集有六个类别，所以此问题可以直接抽象为多分类问题。</p>
 <p>本文第一个目的是搭建CNN-1D卷积网络</p>
 <h2 id="2-1-首先对数据进行归一化"><a href="#2-1-首先对数据进行归一化" class="headerlink" title="2.1 首先对数据进行归一化"></a>2.1 首先对数据进行归一化</h2><p>此处采用的归一化方法为z-score归一化方式</p>
 <script type="math/tex; mode=display">
