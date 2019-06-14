@@ -97,7 +97,9 @@
 <meta property="og:image" content="http://yzhao.top/2019/06/13/使用keras实现时序数据分类的应用/1560430346314.png">
 <meta property="og:image" content="http://yzhao.top/2019/06/13/使用keras实现时序数据分类的应用/1560444016134.png">
 <meta property="og:image" content="http://yzhao.top/2019/06/13/使用keras实现时序数据分类的应用/1560447151140.png">
-<meta property="og:updated_time" content="2019-06-13T17:54:17.746Z">
+<meta property="og:image" content="http://yzhao.top/2019/06/13/使用keras实现时序数据分类的应用/1560495654295.png">
+<meta property="og:image" content="http://yzhao.top/2019/06/13/使用keras实现时序数据分类的应用/1560497103916.png">
+<meta property="og:updated_time" content="2019-06-14T07:33:49.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用keras实现时序数据分类的应用">
 <meta name="twitter:description" content="深度学习火遍了全球，但我一直对其不甚感冒。 但，迫于无奈，终于开始使用循环神经网络进行有关序列数据的分类、预测、异常检测等任务">
@@ -319,7 +321,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-14T01:54:17+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-14T15:33:49+08:00">
                 2019-06-14
               </time>
             
@@ -384,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,118
+                  1,499
                 </span>
               
 
@@ -400,7 +402,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  6
                 </span>
               
             </div>
@@ -448,7 +450,8 @@ z = \frac{x-\mu}{\sigma},其中\mu为样本均值，\sigma为数据标准差</sc
 <p>例如，本题我们的类别分别由六种，walking为1，那么其one-hot编码之后的值为[1, 0, 0, 0, 0, 0]</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果的你的类标签从0开始，那么可以使用keras自带的to_categorical</span></span><br><span class="line"><span class="keyword">from</span> keras.utils.np_utils <span class="keyword">import</span> to_categorical</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里假设y_train= [[1],[2],[3],[5],[4],[5],[6]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># y_train = to_categorical(y_train, 6) </span></span><br><span class="line"><span class="comment"># print(y_train) </span></span><br><span class="line"><span class="comment"># IndexError: index 6 is out of bounds for axis 1 with size 6</span></span><br><span class="line"><span class="comment"># 因为我们的y_train最大值为6，那么类别标签就为0-6，为7</span></span><br><span class="line">y_train = to_categorical(y_train, <span class="number">7</span>) </span><br><span class="line">print(y_train)</span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment"># [[0. 1. 0. 0. 0. 0. 0.]</span></span><br><span class="line"><span class="comment">#  [0. 0. 1. 0. 0. 0. 0.]</span></span><br><span class="line"><span class="comment">#  [0. 0. 0. 1. 0. 0. 0.]</span></span><br><span class="line"><span class="comment">#  [0. 0. 0. 0. 0. 1. 0.]</span></span><br><span class="line"><span class="comment">#  [0. 0. 0. 0. 1. 0. 0.]</span></span><br><span class="line"><span class="comment">#  [0. 0. 0. 0. 0. 1. 0.]</span></span><br><span class="line"><span class="comment">#  [0. 0. 0. 0. 0. 0. 1.]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者 我们让我们的标签减一</span></span><br><span class="line">y_train = to_categorical(y_train - <span class="number">1</span>, <span class="number">6</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="构建网络模型"><a href="#构建网络模型" class="headerlink" title="构建网络模型"></a>构建网络模型</h2><p>此处我们模型结构，摘自[github][<a href="https://github.com/healthDataScience/deep-learning-HAR" target="_blank" rel="noopener">https://github.com/healthDataScience/deep-learning-HAR</a>] 我将其由tensorflow版本修改为了Keras版本</p>
+<h2 id="构建网络模型"><a href="#构建网络模型" class="headerlink" title="构建网络模型"></a>构建网络模型</h2><p>此处我们模型结构，摘自[github][<a href="https://github.com/healthDataScience/deep-learning-HAR" target="_blank" rel="noopener">https://github.com/healthDataScience/deep-learning-HAR</a>] 我将其由tensorflow版本修改为了Keras版本。</p>
+<p>我们的输入数据是[None, 128, 9]</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense, Dropout, Conv1D, MaxPooling1D, Flatten</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> optimizers</span><br><span class="line"></span><br><span class="line">model = Sequential()</span><br><span class="line">model.add(Conv1D(filters=<span class="number">18</span>, kernel_size=<span class="number">2</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>, activation=<span class="string">'relu'</span>,input_shape=(<span class="number">128</span>, <span class="number">9</span>)))</span><br><span class="line">model.add(MaxPooling1D(pool_size=<span class="number">2</span>, strides=<span class="number">2</span>,padding=<span class="string">'same'</span>))</span><br><span class="line">model.add(Conv1D(filters=<span class="number">36</span>, kernel_size=<span class="number">2</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>, activation=<span class="string">'relu'</span>,input_shape=(<span class="number">128</span>, <span class="number">9</span>)))</span><br><span class="line">model.add(MaxPooling1D(pool_size=<span class="number">2</span>, strides=<span class="number">2</span>,padding=<span class="string">'same'</span>))</span><br><span class="line">model.add(Conv1D(filters=<span class="number">72</span>,kernel_size=<span class="number">2</span>,strides=<span class="number">1</span>,padding=<span class="string">'same'</span>, activation=<span class="string">'relu'</span>,input_shape=(<span class="number">128</span>, <span class="number">9</span>)))</span><br><span class="line">model.add(MaxPooling1D(pool_size=<span class="number">2</span>, strides=<span class="number">2</span>,padding=<span class="string">'same'</span>))</span><br><span class="line">model.add(Conv1D(filters=<span class="number">144</span>,kernel_size=<span class="number">2</span>,strides=<span class="number">1</span>,padding=<span class="string">'same'</span>, activation=<span class="string">'relu'</span>,input_shape=(<span class="number">128</span>, <span class="number">9</span>)))</span><br><span class="line">model.add(MaxPooling1D(pool_size=<span class="number">2</span>, strides=<span class="number">2</span>,padding=<span class="string">'same'</span>))</span><br><span class="line">model.add(Flatten())</span><br><span class="line">model.add(Dropout(<span class="number">0.5</span>))</span><br><span class="line">model.add(Dense(<span class="number">6</span>, activation=<span class="string">'softmax'</span>))</span><br><span class="line"><span class="comment"># 模型编译</span></span><br><span class="line">adam = optimizers.Adam(lr=<span class="number">0.0001</span>)</span><br><span class="line">model.compile(loss=<span class="string">'categorical_crossentropy'</span>, optimizer=adam, metrics=[<span class="string">'accuracy'</span>])</span><br></pre></td></tr></table></figure>
 <p>其模型结构大致如图:</p>
 <img src="/2019/06/13/使用keras实现时序数据分类的应用/1560444016134.png" title="CNN-1D基本结构示意图">
@@ -456,8 +459,23 @@ z = \frac{x-\mu}{\sigma},其中\mu为样本均值，\sigma为数据标准差</sc
 <img src="/2019/06/13/使用keras实现时序数据分类的应用/1560447151140.png" title="epoch=1000时的训练示意图">
 <p>从图中，我们可以看到 ，训练集的准确率高达99.97%，而测试集的准确率也达到了92.43%的程度；</p>
 <p>当然，这次训练设置比较简陋并且可以看出来有轻微的过拟合的出现，但结果在90%左右应该问题不大。</p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>本文尝试使用CNN-1D来做序列数据的分类，近几年，CNN-1D重新被提出认为有与LSTM相当甚至更强的序列建模能力，故本文使用keras复现了CNN-1D的网络结构，并在Human Activity Recognition数据集上达到了92%的准确率</p>
-<p>下一篇，将使用LSTM来重新实现本文的内容。</p>
+<h1 id="使用Keras搭建LSTM"><a href="#使用Keras搭建LSTM" class="headerlink" title="使用Keras搭建LSTM"></a>使用Keras搭建LSTM</h1><p>前面的步骤如同CNN-1D一样，我们直接开始模型构造。</p>
+<p>相反，没有仿照 [github][<a href="https://github.com/healthDataScience/deep-learning-HAR]而是直接手写了一个两层的LSTM。" target="_blank" rel="noopener">https://github.com/healthDataScience/deep-learning-HAR]而是直接手写了一个两层的LSTM。</a></p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential()</span><br><span class="line">model.add(LSTM(units=<span class="number">50</span>,activation=<span class="string">'tanh'</span>,return_sequences=<span class="keyword">True</span>))</span><br><span class="line">model.add(Dropout(<span class="number">0.2</span>))</span><br><span class="line">model.add(LSTM(units=<span class="number">100</span>,activation=<span class="string">'tanh'</span>,return_sequences=<span class="keyword">False</span>))</span><br><span class="line">model.add(Dropout(<span class="number">0.2</span>))</span><br><span class="line">model.add(Dense(<span class="number">6</span>,activation=<span class="string">'softmax'</span>))</span><br></pre></td></tr></table></figure>
+<p>模型结构如下：</p>
+<img src="/2019/06/13/使用keras实现时序数据分类的应用/1560495654295.png" title="LSTM网络结构图（有出入）">
+<p>模型训练及结果如下，</p>
+<p>为了与上文一致，依旧选择epoch=1000，batch_size=600，结果如下:</p>
+<img src="/2019/06/13/使用keras实现时序数据分类的应用/1560497103916.png" title="epoch=1000时的训练结果示意图">
+<p>从图中可以看到，训练集的准确度高达98.67%，在测试集的准确度高达89.41%。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>本文使用CNN-1D和LSTM来做序列数据的分类。</p>
+<p>近几年，CNN-1D重新被提出认为有与LSTM相当甚至更强的序列建模能力，故本文使用keras复现了CNN-1D的网络结构，并在Human Activity Recognition数据集上达到了92%的准确率。</p>
+<p>而LSTM作为序列立刻想起来的方法，开始出现了可能并不是很好用的情况。</p>
+<p>同时，用机器学习的方式来做本问题更是得到了高达96%。在学术界还没有出现更好的方法之前，深度学习可能不是时序数据的首选。</p>
+<p>卷积将图像领域带进了深度学习，现在提起来深度学习，计算机视觉排名第一，甚至计算机视觉和深度学习在某些时候可以等价；</p>
+<p>不过这一切在2018年被终止，BERT的出现开启了NLP领域的元年，可以说，接下来时代就是NLP的时代。而前几年则是计算机视觉和卷积神经网络的时代。</p>
+<p>我认同一句话，深度学习很牛逼，但选择合适的方法解决问题才是重要的。</p>
 
       
     </div>
@@ -711,7 +729,7 @@ z = \frac{x-\mu}{\sigma},其中\mu为样本均值，\sigma为数据标准差</sc
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据集介绍"><span class="nav-number">1.</span> <span class="nav-text">数据集介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Keras搭建一维卷积"><span class="nav-number">2.</span> <span class="nav-text">使用Keras搭建一维卷积</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先对数据进行归一化"><span class="nav-number">2.1.</span> <span class="nav-text">首先对数据进行归一化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对标签进行one-hot编码"><span class="nav-number">2.2.</span> <span class="nav-text">对标签进行one-hot编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建网络模型"><span class="nav-number">2.3.</span> <span class="nav-text">构建网络模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型训练及评估"><span class="nav-number">2.4.</span> <span class="nav-text">模型训练及评估</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据集介绍"><span class="nav-number">1.</span> <span class="nav-text">数据集介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Keras搭建一维卷积"><span class="nav-number">2.</span> <span class="nav-text">使用Keras搭建一维卷积</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先对数据进行归一化"><span class="nav-number">2.1.</span> <span class="nav-text">首先对数据进行归一化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对标签进行one-hot编码"><span class="nav-number">2.2.</span> <span class="nav-text">对标签进行one-hot编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建网络模型"><span class="nav-number">2.3.</span> <span class="nav-text">构建网络模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型训练及评估"><span class="nav-number">2.4.</span> <span class="nav-text">模型训练及评估</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Keras搭建LSTM"><span class="nav-number">3.</span> <span class="nav-text">使用Keras搭建LSTM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
@@ -745,7 +763,7 @@ z = \frac{x-\mu}{\sigma},其中\mu为样本均值，\sigma为数据标准差</sc
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">19.1k</span>
+    <span title="Site words total count">19.5k</span>
   
 </div>
 
