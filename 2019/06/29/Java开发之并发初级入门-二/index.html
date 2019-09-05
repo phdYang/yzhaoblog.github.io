@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://yzhao.top/2019/06/29/Java开发之并发初级入门-二/1565453336666.png">
 <meta property="og:image" content="http://yzhao.top/2019/06/29/Java开发之并发初级入门-二/1565453491541.png">
 <meta property="og:image" content="http://yzhao.top/2019/06/29/Java开发之并发初级入门-二/20190905115807.png">
-<meta property="og:updated_time" content="2019-09-05T12:45:47.104Z">
+<meta property="og:updated_time" content="2019-09-05T16:45:02.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java开发之并发初级入门（二）">
 <meta name="twitter:description" content="接上文，本文继续叙述Java并发的具体应用方法，应用场景等概念">
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-05T20:45:47+08:00">
-                2019-09-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-06T00:45:02+08:00">
+                2019-09-06
               </time>
             
           </span>
@@ -384,7 +384,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,483
+                  3,688
                 </span>
               
 
@@ -400,7 +400,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  11
+                  15
                 </span>
               
             </div>
@@ -442,6 +442,14 @@
 </ul>
 <h1 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h1><p>我们介绍了一些线程的概念，以及我们为什么需要线程，紧接着我们介绍了在Java程序世界中如何创建线程和使用基本的线程操作。</p>
 <p>但是，当我们身处多线程环境下会遇到的第一个问题就是就是线程安全。在单线程环境下，所有资源都是该线程持有，但多线程不一样，会出现一些“不可思议”的问题，也就是说，在多线程环境下，线程之间会出现竞态。</p>
+<p>在Java语言中，各种操作共享的数据有以下 5类：</p>
+<ul>
+<li>不可变</li>
+<li>绝对线程安全</li>
+<li>相对线程安全</li>
+<li>线程兼容</li>
+<li>线程对立</li>
+</ul>
 <p>比如，对于一个售票系统，当多个客户端同时访问售票系统时，每一个客户端是一个线程，那么对于票的数量来说，就是一个共享资源，此时就会产生线程不安全的问题。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对于单线程程序来说，只要保证，票数大于0，即可售卖</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> nums = <span class="number">20</span>; <span class="comment">// 假设余票20张</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sell</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (nums &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">		System.out.println(--nums);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设此时有两个窗口（两个线程）都在售票，只有nums大于0，即可售卖，即减1操作</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        sell();</span><br><span class="line">    &#125;).start();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        sell();</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上述程序，我们模拟了两个窗口售票的情况，实际上，真实场景是上亿+的线程在同时请求，为了模拟的更加细腻，我们在判断和售卖两个操作之间增加了睡眠机制，为了更好的模拟和再现多线程可能会出的问题。</p>
@@ -499,7 +507,43 @@
 <li>类锁和对象锁不是同一把锁，如（5，7）</li>
 <li>一个对象中的同步方法和非同步方法之间是没有关系的，如（3）</li>
 </ul>
-<h3 id="Synchronized在JDK中的改进"><a href="#Synchronized在JDK中的改进" class="headerlink" title="Synchronized在JDK中的改进"></a>Synchronized在JDK中的改进</h3><p>我们知道，<code>synchronized</code>刚一问世，就是以极其笨重的姿态问世的，JDK几经修改，终于打造了一款高性能的synchronized！</p>
+<h3 id="Synchronized在JDK中的改进"><a href="#Synchronized在JDK中的改进" class="headerlink" title="Synchronized在JDK中的改进"></a>Synchronized在JDK中的改进</h3><p>我们知道，synchronized刚一问世，就是以极其笨重的姿态问世的，JDK几经修改，终于打造了一款高性能的synchronized！</p>
+<p>在JDK1.6之前，synchronized一直是以重量级锁来面对世界，在1.6之后，JDK引入了偏向锁和轻量级锁，从而让锁拥有了四种状态：</p>
+<ul>
+<li>无锁状态（unlocked）</li>
+<li>偏向锁状态（biasble）</li>
+<li>轻量级锁状态（lightweight locked）</li>
+<li>重量级锁状态（inflated）</li>
+</ul>
+<p>他们会随着竞争的激烈程度而逐渐升级。</p>
+<p>所以，主要的一个锁优化有以下几个方面：<strong>自适应自旋</strong>，<strong>锁消除</strong>，<strong>锁粗化</strong>，<strong>轻量级锁</strong>，<strong>偏向锁</strong>；</p>
+<p>我们分别简单讲述一下都是什么作用，接着重点讲解synchronized的锁升级的过程。</p>
+<h4 id="自旋"><a href="#自旋" class="headerlink" title="自旋"></a>自旋</h4><p>我们知道，对于使用互斥同步方法使得线程进入阻塞状态的开销很大，而共享数据的锁定状态很短，有时候切换的耗时还要大于运行时间。那么，自旋的思想就是让一个线程在请求锁是执行一个<strong>忙循环（自旋）</strong>，如果在这段时间可以获得锁，就可以避免进入阻塞状态。</p>
+<p>但是，自旋也是消耗资源的，自旋的默认次数是10。</p>
+<p>而在JDK 1.6之后引入了自适应自旋，自旋的时间是由前一次在同一个锁的<strong>自旋时间</strong>和<strong>锁的拥有者</strong>决定的。</p>
+<h4 id="锁消除与锁粗化"><a href="#锁消除与锁粗化" class="headerlink" title="锁消除与锁粗化"></a>锁消除与锁粗化</h4><p><strong>锁消除</strong>指的是，判断在一段代码上，堆上的所有数据都不会逃逸出去被其他线程访问到，那么就可以将其视为栈上的数据，是线程私有的。那么，就会忽略所有的同步操作热直接执行</p>
+<blockquote>
+<p>锁消除与逃逸分析都是JDK 1.5以后</p>
+<p>逃逸分析（即时编译器优化）：基本方法是分析对象的动态作用域。如果可以证明一个对象不会逃逸到方法或者线程之外，那么可以进行一些优化：栈上分配；同步消除；标量替换</p>
+</blockquote>
+<p>锁粗化指的是，如果虚拟机探测到有这样的一串零碎的操作都对同一个对象加锁，将会把加锁同步的范围扩展到整个操作序列的外部</p>
+<h4 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h4><p>轻量级锁始于JDK 1.6，它有别于使用“互斥同步”的重量级锁。其本意是：在没有多线程竞争的环境下，减少重量级锁的性能消耗。</p>
+<p>我们在这里简单说一些，什么是轻量级锁，什么情况下使用轻量级锁，如何升级，以及如何加锁和解锁的。更加详细的原理涉及了JVM的知识，请参考《深入理解Java虚拟机：JVM高级特性与最佳实践》。</p>
+<p>首先，当线程进入同步块时，如果同步对象没有被锁定，那么虚拟机会在栈帧中创建一个锁记录，然后采用CAS的操作将对象头（Mark Word）更新为指向锁记录（Lock Record）的指针。成功，则获得锁，更新状态为轻量级锁；失败，需要判断是否指针是否指向自身，如果是，则直接进入同步块，否则，就说明这个锁对象已经被线程抢占了，要膨胀为重量级锁。</p>
+<blockquote>
+<p>重量级锁的对象头指针指向互斥量</p>
+</blockquote>
+<p>在解锁的过程中，同样采用CAS替换对象头和它的备份，替换成功，则同步完成；失败，说明有其他线程尝试获取过该锁，那么释放锁的同时需要唤醒被挂起的线程。</p>
+<p>轻量级锁认为：对于大部分的锁，在整个同步期间是不存在竞争的。</p>
+<blockquote>
+<p>CAS操作后续详细说明</p>
+</blockquote>
+<h4 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h4><p>偏向锁指的是偏向第一个线程。</p>
+<p>当锁对象第一次被线程获取的时候，使用CAS把该线程的ID记录在对象头上，持有偏向锁的线程进入同步块，不会进行任何同步操作。当有第二个线程持有偏向锁时，则偏向模式宣告结束。</p>
+<h3 id="Synchronized的实现"><a href="#Synchronized的实现" class="headerlink" title="Synchronized的实现"></a>Synchronized的实现</h3><p>JVM底层通过监视锁来实现synchronized同步的。首先ACC_SYNCHRONIZED标识，然后使用monitorenter和monitorexit两个字节码指令获取锁和释放锁，这两个字节码都需要一个reference来指明加锁和解锁的对象。使用monitor来作为锁计数器，默认为0。</p>
+<p>JVM的优化主要集中在monitor的加锁和解锁上。</p>
+<h2 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h2><p>除了上述的synchronized，我们J.U.C（java.util.concurrent）也有很多方便好用的方法，接下来，我们学习J.U.C与AQS（AbstractQueuedSynchronizer）</p>
+<p>（未完待续…）</p>
 
       
     </div>
@@ -749,7 +793,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#回顾"><span class="nav-number">1.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程安全"><span class="nav-number">2.</span> <span class="nav-text">线程安全</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#锁"><span class="nav-number">3.</span> <span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Synchronized"><span class="nav-number">3.1.</span> <span class="nav-text">Synchronized</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronized的使用"><span class="nav-number">3.1.1.</span> <span class="nav-text">Synchronized的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一问"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">第一问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二问"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">第二问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三问"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">第三问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四问"><span class="nav-number">3.1.1.4.</span> <span class="nav-text">第四问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五问"><span class="nav-number">3.1.1.5.</span> <span class="nav-text">第五问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第六问"><span class="nav-number">3.1.1.6.</span> <span class="nav-text">第六问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第七问"><span class="nav-number">3.1.1.7.</span> <span class="nav-text">第七问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第八问"><span class="nav-number">3.1.1.8.</span> <span class="nav-text">第八问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.1.1.9.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronized在JDK中的改进"><span class="nav-number">3.1.2.</span> <span class="nav-text">Synchronized在JDK中的改进</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#回顾"><span class="nav-number">1.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程安全"><span class="nav-number">2.</span> <span class="nav-text">线程安全</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#锁"><span class="nav-number">3.</span> <span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Synchronized"><span class="nav-number">3.1.</span> <span class="nav-text">Synchronized</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronized的使用"><span class="nav-number">3.1.1.</span> <span class="nav-text">Synchronized的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一问"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">第一问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二问"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">第二问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三问"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">第三问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四问"><span class="nav-number">3.1.1.4.</span> <span class="nav-text">第四问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五问"><span class="nav-number">3.1.1.5.</span> <span class="nav-text">第五问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第六问"><span class="nav-number">3.1.1.6.</span> <span class="nav-text">第六问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第七问"><span class="nav-number">3.1.1.7.</span> <span class="nav-text">第七问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第八问"><span class="nav-number">3.1.1.8.</span> <span class="nav-text">第八问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.1.1.9.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronized在JDK中的改进"><span class="nav-number">3.1.2.</span> <span class="nav-text">Synchronized在JDK中的改进</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自旋"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">自旋</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁消除与锁粗化"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">锁消除与锁粗化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#轻量级锁"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">轻量级锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#偏向锁"><span class="nav-number">3.1.2.4.</span> <span class="nav-text">偏向锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronized的实现"><span class="nav-number">3.1.3.</span> <span class="nav-text">Synchronized的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lock"><span class="nav-number">3.2.</span> <span class="nav-text">Lock</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -783,7 +827,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25.1k</span>
+    <span title="Site words total count">26.3k</span>
   
 </div>
 
