@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="综述类," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="主要用于软件项目管理课程的课上讲稿，顺便再基础的了解一下软件测试领域的相关知识 以下内容来自于百度百科和网站各博客的整理与汇总。">
+<meta name="keywords" content="综述类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件测试概述">
+<meta property="og:url" content="http://yzhao.top/2018/05/10/20180510/index.html">
+<meta property="og:site_name" content="洋仔的世界">
+<meta property="og:description" content="主要用于软件项目管理课程的课上讲稿，顺便再基础的了解一下软件测试领域的相关知识 以下内容来自于百度百科和网站各博客的整理与汇总。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yzhao.top/2018/05/10/20180510/01.png">
+<meta property="og:image" content="http://yzhao.top/2018/05/10/20180510/02.png">
+<meta property="og:updated_time" content="2018-05-10T13:03:18.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件测试概述">
+<meta name="twitter:description" content="主要用于软件项目管理课程的课上讲稿，顺便再基础的了解一下软件测试领域的相关知识 以下内容来自于百度百科和网站各博客的整理与汇总。">
+<meta name="twitter:image" content="http://yzhao.top/2018/05/10/20180510/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yzhao.top/2018/05/10/20180510/"/>
+
+
+
+
+
+  <title>软件测试概述 | 洋仔的世界</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洋仔的世界</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            记忆的时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yzhao.top/2018/05/10/20180510/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="洋仔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洋仔的世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件测试概述</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T20:27:15+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-10T21:03:18+08:00">
+                2018-05-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件测试/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/10/20180510/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/10/20180510/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,896
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  20
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>主要用于软件项目管理课程的课上讲稿，顺便再基础的了解一下软件测试领域的相关知识</p>
+<p>以下内容来自于百度百科和网站各博客的整理与汇总。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>百度百科给出的软件测试概念如下：</p>
+<blockquote>
+<p>软件测试（Software Testing），描述一种用来促进鉴定软件的正确性、完整性、安全性和质量的过程。换句话说，软件测试是一种<strong>实际输出</strong>与<strong>预期输出</strong>之间的审核或者比较过程。 </p>
+</blockquote>
+<p>维基百科给出的定义如下：</p>
+<blockquote>
+<p>软件测试（software testing），描述一种用来促进鉴定软件的正确性、完整性、安全性和品质的过程。据此，您可能会想，软件测试永远不可能完整的确立任意电脑软件的正确性。然而，在可计算理论（计算机科学的一个支派）一个简单的数学证明推断出下列结果：不可能完全解决所谓“死机”，指任意计算机程序是否会进入死循环，或者罢工并产生输出问题。换句话说，软件测试是一种实际输出与预期输出间的<strong>审核</strong>或者<strong>比较</strong>过程。 </p>
+</blockquote>
+<p>软件测试的<strong>经典定义</strong>是：在规定的条件下对程序进行操作，以发现程序错误，衡量软件质量，并对其是否能满足设计要求进行评估的过程。 </p>
+<p>Bill Hetzel在《软件测试完全指南》(Complete Guide of Software Testing)一书中指出 ：“测试是以评价一个程序或者系统属性为目标的任何一种活动。测试是对软件质量的度量 ”</p>
+<p>1983年IEEE提出的软件工程术语中给软件测试下的定义是：“使用人工或自动的手段来运行或测定某个软件系统的过程，其目的在于<strong>检验它是否满足规定的需求</strong>或弄清预期结果与实际结果之间的<strong>差别</strong>”。这个定义表明了，软件测试的目的是为了<strong>检验</strong>软件系统是否满足需求。它再也不是一个一次性的，而且只是开发后期的活动，而是与整个开发流程融合成一体。软件测试已成为一个专业，需要运用专门的方法和手段，需要专门人才和专家来承担。 </p>
+<h2 id="软件测试发展历程"><a href="#软件测试发展历程" class="headerlink" title="软件测试发展历程"></a>软件测试发展历程</h2><ul>
+<li>软件测试是伴随着软件的产生而产生的。</li>
+<li>早期的软件开发过程中软件规模都很小、复杂程度低，软件开发的过程混乱无序、相当随意，测试的含义比较狭窄，开发人员将测试等同于“调试”。</li>
+<li>上世纪80年代初期，软件和IT行业进入了大发展，软件趋向大型化、高复杂度，软件的质量越来越重要。一些软件测试的基础理论和实用技术开始形成，并且人们开始为软件开发设计了各种流程和管理方法，软件开发的方式也逐渐由<strong>混乱无序</strong>的开发过程过渡到<strong>结构化</strong>的开发过程，以<strong>结构化分析与设计</strong>、<strong>结构化评审</strong>、<strong>结构化程序设计</strong>以及<strong>结构化测试</strong>为特征 </li>
+<li>软件测试定义发生了改变，测试不单纯是一个发现错误的过程，而且将测试作为软件质量保证(SQA)的主要职能，包含软件质量评价的内容 </li>
+<li>上世纪90年代，软件行业开始迅猛发展，软件的规模变的非常大，在一些大型软件开发过程中，测试活动需要花费大量的时间和成本，而当时测试的手段几乎完全都是手工测试，测试的效率非常低。于是，很多测试实践者开始尝试开发商业的测试工具来支持测试</li>
+<li>测试工具的发展，大大提高了软件测试的自动化程度，让测试人员从繁琐和重复的测试活动中解脱出来，专心从事有意义的测试设计等活动 </li>
+</ul>
+<h2 id="软件测试基本理论"><a href="#软件测试基本理论" class="headerlink" title="软件测试基本理论"></a>软件测试基本理论</h2><h3 id="软件可靠性"><a href="#软件可靠性" class="headerlink" title="软件可靠性"></a>软件可靠性</h3><p>​    IEEE将软件可靠性定义为：系统在特定环境下，在给定的时间内无故障运行的概率。软件可靠性是对软件在设计、开发以及所预定的环境下具有能力的置信度的一个度量，是衡量软件质量的主要参数之一。而软件测试则是保证软件质量、提高软件可靠性的最重要手段。</p>
+<p>​        软件可靠性不但与软件存在的缺陷或差错有关，而且与系统输入和系统使用有关。软件可靠性的概率度量称软件可靠度。 </p>
+<h3 id="软件测试的目标"><a href="#软件测试的目标" class="headerlink" title="软件测试的目标"></a>软件测试的目标</h3><ol>
+<li>发现一些可以通过测试避免的开发风险。</li>
+<li>实施测试来降低所发现的风险。</li>
+<li>确定测试何时可以结束。</li>
+<li>在开发项目的过程中将测试看作是一个标准项目。</li>
+</ol>
+<h3 id="软件测试对象"><a href="#软件测试对象" class="headerlink" title="软件测试对象"></a>软件测试对象</h3><ol>
+<li>程序</li>
+<li>数据</li>
+<li>文档</li>
+</ol>
+<h3 id="测试的进程1"><a href="#测试的进程1" class="headerlink" title="测试的进程1"></a>测试的进程<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></h3><ul>
+<li><strong>Alpha测试</strong></li>
+</ul>
+<p>Alpha测试通常是阶段性的开发完成后所开始进行，一直持续到进入Beta测试阶段前的阶段。Alpha测试是一种验证测试，在模拟的环境中以模拟的数据来运行。</p>
+<p>在这个阶段中，通常是在开发单位由开发人员与测试的测试人员，以模拟或实际操作性的方式进行验证测试。</p>
+<ul>
+<li><strong>Beta测试</strong></li>
+</ul>
+<p>在系统测试中通常先进行Alpha测试以验证信息系统匹配用户以及设计需求所期望的功能。当Alpha阶段完成后，开发过程进入到Beta阶段，由公众参与的测试的阶段。Beta测试可称为确认测试，在一个真实的环境中以实际的数据来运行测试，以确认性能，系统运行有效率，系统撤消与备份作业正常，通过测试让信息系统日后可以更趋完善。 </p>
+<ul>
+<li><strong>封测</strong></li>
+</ul>
+<p>封闭测试（Closed Beta，常简作<strong>封测</strong>或<strong>CB</strong>）是软件或服务等产品在开发完成后、将公开上市前的测试过程。相对于公开测试，封闭测试的主要用途是测试软件的功能和检查程序错误等等，因此通常只提供给少数人进行测试。有些公司会要求参与测试者签署保密协议，以避免测试的产品提前外流 </p>
+<ul>
+<li><strong>公测</strong></li>
+</ul>
+<p>公开测试（Open Beta，常简作<strong>公测</strong>或<strong>OB</strong>），一般常指软件或服务等产品在正式上市前开放给不特定人试用，虽然原意是希望试用者能够提报bug，但并不是把试用者当做真正的验证人员。由于通常为免费性质，故常常能够吸引到大批的试用者参与，可视为另一种营销策略。另一方面也节省下测试人员的成本，和验证稳定度（对于多人使用的带宽及机器是否能负载，又称压力测试的时间）。 </p>
+<h3 id="测试类型"><a href="#测试类型" class="headerlink" title="测试类型"></a>测试类型</h3><ul>
+<li><p><strong>功能测试</strong></p>
+<p>按照测试软件的各个功能划分进行有条理的测试，在功能测试部分要保证测试项覆盖<strong>所有功能</strong>和<strong>各种功能条件组合</strong>。 </p>
+</li>
+<li><p><strong>系统测试</strong></p>
+<p>对一个完整的软件以用户的角度来进行测试。</p>
+<p><strong>系统测试和功能测试的区别：</strong></p>
+<p>系统测试利用的所有测试数据和测试的方法都要模拟成和用户的实际使用环境完全一样，测试的软件也是经过系统集成以后的完整软件系统。 </p>
+</li>
+<li><p><strong>极限值测试</strong></p>
+<p>对软件在各种特殊条件，特殊环境下能否正常运行和软件的性能进行测试 。</p>
+<p><strong>特殊条件</strong>一般指的是软件规定的最大值，最小值，以及在超过最大、最小值条件下的测试。</p>
+<p><strong>特殊环境</strong>一般指的是软件运行的机器处于CPU高负荷，或是网络高负荷状态下的测试。  </p>
+</li>
+<li><p><strong>性能测试</strong></p>
+<p>性能测试是对软件性能的评价 。</p>
+</li>
+<li><p><strong>压力测试</strong></p>
+<p>压力测试要求进行超过规定性能指标的测试 </p>
+</li>
+</ul>
+<h3 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h3><ul>
+<li><p>单元测试</p>
+<p>单元测试是对软件组成单元进行测试，其目的是检验软件基本组成单位的正确性。</p>
+<p>测试的对象是软件设计的最小单位：函数。 </p>
+</li>
+<li><p>集成测试</p>
+<p>集成测试也称综合测试、组装测试、联合测试，将程序模块采用适当的集成策略组装起来，对系统的接口及集成后的功能进行正确性检测的测试工作。其主要目的是检查软件单位之间的接口是否正确，集成测试的对象是已经经过单元测试的模块。 </p>
+</li>
+<li><p>系统测试</p>
+<p>系统测试主要包括功能测试、界面测试、可靠性测试、易用性测试、性能测试。 功能测试主要针对包括功能可用性、功能实现程度（功能流程&amp;业务流程、数据处理&amp;业务数据处理）方面测试 </p>
+</li>
+<li><p>回归测试</p>
+<p>回归测试指在软件维护阶段，为了检测代码修改而引入的错误所进行的测试活动。回归测试是软件维护阶段的重要工作，有研究表明，回归测试带来的耗费占软件生命周期的1/3总费用以上。</p>
+<p>与普通的测试不同，在回归测试过程开始的时候，测试者有一个完整的测试用例集可供使用，因此，如何根据代码的修改情况对已有测试用例集进行有效的复用是回归测试研究的重要方向，此外，回归测试的研究方向还涉及自动化工具，面向对象回归测试，测试用例优先级，回归测试用例补充生成等</p>
+</li>
+</ul>
+<h3 id="软件测试流程2"><a href="#软件测试流程2" class="headerlink" title="软件测试流程2"></a>软件测试流程<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></h3><img src="/2018/05/10/20180510/01.png" title="软件测试流程图">
+<h2 id="软件测试基本方法"><a href="#软件测试基本方法" class="headerlink" title="软件测试基本方法"></a>软件测试基本方法</h2><ul>
+<li><p><strong>黑箱测试</strong></p>
+<p>黑箱测试（black-box testing），也称黑盒测试，是软件测试方法，测试应用程序的功能，而不是其内部结构或运作。测试者不需具备应用程序的代码、内部结构和编程语言的专门知识。测试者只需知道什么是系统应该做的事，即当键入一个特定的输入，可得到一定的输出。</p>
+<p>测试案例是依应用系统应该做的功能，照规范、规格或要求等设计。测试者选择有效输入和无效输入来验证是否正确的输出。</p>
+<p>此测试方法可适合大部分的软件测试，例如集成测试以及系统测试。</p>
+</li>
+<li><p><strong>白箱测试</strong></p>
+<p>白箱测试（white-box testing，又称透明盒测试glass box testing、结构测试structural testing等）是一个测试软件的方法，测试应用程序的内部结构或运作，而不是测试应用程序的功能（即黑箱测试）。在白箱测试时，以编程语言的角度来设计测试案例。测试者输入数据验证数据流在程序中的流动路径，并确定适当的输出，类似测试电路中的节点。</p>
+<p>白箱测试可以应用于单元测试、集成测试和系统的软件测试流程，可测试在集成过程中每一单元之间的路径，或者主系统跟子系统中的测试。尽管这种测试的方法可以发现许多的错误或问题，它可能无法检测未使用部分的规范。</p>
+</li>
+<li><p><strong>灰盒测试</strong></p>
+<p>介于白盒测试与黑盒测试之间的一种测试，灰盒测试多用于集成测试阶段，不仅关注输出、输入的正确性，同时也关注程序内部的情况。灰盒测试不像白盒那样详细、完整，但又比黑盒测试更关注程序的内部逻辑，常常是通过一些表征性的现象、事件、标志来判断内部的运行状态。 </p>
+</li>
+</ul>
+<h2 id="软件测试自动化"><a href="#软件测试自动化" class="headerlink" title="软件测试自动化"></a>软件测试自动化</h2><h3 id="测试自动化概念"><a href="#测试自动化概念" class="headerlink" title="测试自动化概念"></a>测试自动化概念</h3><p>维基百科的定义如下：</p>
+<blockquote>
+<p>在软件测试中，<strong>测试自动化</strong>是一种测试方法，使用特定的软件，去控制测试流程，并比较实际的结果与预期结果之间的差异。通过将测试自动化，可以让正式的测试过程中的必要测试，可以反复进行；通过这种方法，也可以将难以手动进行的测试，交由软件来做。这种测试方法，是持续交付流程中的必要组成。 </p>
+</blockquote>
+<p>自动化测试是相对手工测试而存在的一个概念，由手工逐个地运行测试用例的操作过程被测试工具自动执行的过程所代替。</p>
+<p>测试工具的使用是自动化测试的主要特征。</p>
+<h3 id="测试自动化流程"><a href="#测试自动化流程" class="headerlink" title="测试自动化流程"></a>测试自动化流程</h3><img src="/2018/05/10/20180510/02.png" title="测试自动化流程图">
+<h3 id="测试自动化的原理和方法"><a href="#测试自动化的原理和方法" class="headerlink" title="测试自动化的原理和方法"></a>测试自动化的原理和方法</h3><ul>
+<li><p>代码分析</p>
+<p>类似于高级编译系统，在工具中确定类/对象/函数/变量等定义规则、语法规则等，在分析时对代码进行语法扫描，找出不符合编码规范的地方 </p>
+</li>
+<li><p>捕获和回放</p>
+<p>如果说代码分析是一种白盒测试的自动化方法，捕获和回放则是一种黑盒测试的自动化方法</p>
+</li>
+<li><p>直接编写脚本来操作、控制、验证对象</p>
+<p>包括对象识别、脚本技术、对运行结果进行比较 </p>
+</li>
+</ul>
+<h3 id="软件测试工具"><a href="#软件测试工具" class="headerlink" title="软件测试工具"></a>软件测试工具</h3><ul>
+<li><p>自动化测试工具的特征</p>
+<ol>
+<li><p>支持脚本化语言 </p>
+<p>脚本语言的功能越强大，就越能够为测试开发人员提供更灵活的使用空间，而且有可能用一个复杂的语言写出比被测试软件还要复杂的测试系统。</p>
+</li>
+<li><p>对程序界面中对象的识别能力</p>
+<p>鼠标位置识别,对象识别，位图对象识别</p>
+</li>
+<li><p>支持函数的可重用</p>
+<p>脚本比较容易实现对函数的调用，脚本与被调用函数之间的参数传递</p>
+</li>
+<li><p>支持外部函数库</p>
+<p>如Windows 中DLL访问，如采用外部函数进行数据库操作正确性检查等 </p>
+</li>
+<li><p>抽象层</p>
+<p>抽象层将程序界面中存在的所有对象实体一一映射成逻辑对象，通过简单修改抽象层，帮助减少测试维护工作量 </p>
+</li>
+<li><p>支持分布式测试</p>
+<p>分布式测试可以实现定制任务执行的时间表，安排多人同时进行测试. </p>
+</li>
+<li><p>支持数据驱动测试</p>
+<p>测试脚本通过从事先准备好的数据文件中读取或者写入数据保证测试流程的正常执行，少的脚本，大量的测试数据即可。  </p>
+</li>
+<li><p>错误处理</p>
+<p>在出现问题时能够跳过错误或者对系统进行复位，执行后面的任务，从而不至于出现一个问题而耽误了所有用例的执行</p>
+</li>
+<li><p>调试器</p>
+<p>调试器要能够支持脚本单步执行、设置断点、核对变量返回结果等，有的还可以跟踪进入可执行程序，外部调用的函数库等 </p>
+</li>
+<li><p>源代码管理</p>
+<p>可以帮助我们进行测试脚本库的导入，导出，回退到以前版本，比较不同版本间的差别，以及同时对几个项目进行跟踪等，尤其在团队开发中很有必要。可以对测试数据文件，测试脚本，对象抽象层进行统一管理     </p>
+</li>
+<li><p>支持脚本的命令行方式</p>
+<p>如机器启动、程序BUILD后可以自动启动测试脚本执行等</p>
+</li>
+</ol>
+</li>
+<li><p>自动化测试工具种类</p>
+<ol>
+<li><p>企业级自动化测试工具WinRunner</p>
+<p>这款软件是Mercury Interactive公司的。 它企业级的功能测试工具，用于检测应用程序是否能够达到预期的功能及正常运行。通过自动录制、检测和回放用户的应用操作，WinRunner能够有效地帮助测试人员对复杂的企业级应用的不同发布版进行测试，提高测试人员的工作效率和质量，确保跨平台的、复杂的企业级应用无故障发布及长期稳定运行。  </p>
+</li>
+<li><p>工业标准级负载测试工具Load runner</p>
+<p>这款软件是惠普公司开发的。 它是一种预测系统行为和性能的负载测试工具。通过以<strong>模拟</strong>上千万用户实施并发负载及实时性能监测的方式来确认和查找问题，LoadRunner能够对整个企业架构进行测试。通过使用LoadRunner，企业能最大限度地缩短测试时间，优化性能和加速应用系统的发布周期。</p>
+</li>
+<li><p>功能测试工具Rational Robot</p>
+<p>IBM Rational Robot是业界最顶尖的功能测试工具，它甚至可以在测试人员学习高级脚本技术之前帮助其进行成功的测试。它集成在测试人员的桌面IBM Rational Test Manager上，在这里测试人员可以计划、组织、执行、管理和报告所有测试活动，包括手动测试报告。这种测试和管理的双重功能是自动化测试的理想开始。</p>
+</li>
+<li><p>功能和性能测试的工具JMeter </p>
+<p>JMeter是Apache组织的开放源代码项目，它是功能和性能测试的工具，100%的用java实现。 </p>
+</li>
+<li><p><strong>单元测试工具xUnit系列</strong> </p>
+<p>目前的最流行的单元测试工具是xUnit系列框架，常用的根据语言不同分为JUnit（java），CppUnit（C++），DUnit（Delphi），NUnit（.net），PhpUnit（Php）等等。</p>
+<p>该测试框架的第一个和最杰出的应用就是由Erich Gamma（《设计模式》的作者）和Kent Beck（XP（Extreme Programming）的创始人）提供的开放源代码的<strong>JUnit</strong>. </p>
+</li>
+<li><p>全球测试管理系统testdirector </p>
+<p>TestDirector是业界第一个基于Web的测试管理系统，它可以在您公司内部或外部进行全球范围内测试的管理。通过在一个整体的应用系统中集成了测试管理的各个部分，包括需求管理，测试计划，测试执行以及错误跟踪等功能，TestDirector极大地加速了测试过程。 </p>
+</li>
+<li><p>自动化白盒测试工具Jtest </p>
+<p>Jtest是parasoft公司推出的一款针对java语言的自动化白盒测试工具，它通过自动实现java的单元测试和代码标准校验，来提高代码的可靠性。parasoft同时出品的还有C++ test，是一款C/C++白盒测试工具。 </p>
+</li>
+<li><p>性能测试工具WAS </p>
+<p>Microsoft Web Application Stress Tool是由微软的网站测试人员所开发，专门用来进行实际网站压力测试的一套工具。透过这套功能强大的压力测试工具，您可以使用少量的Client端计算机仿真大量用户上线对网站服务所可能造成的影响。 </p>
+</li>
+<li><p>性能测试和分析工具WEBLODE </p>
+<p>webload是RadView公司推出的一个性能测试和分析工具，它让web应用程序开发者自动执行压力测试；webload通过模拟真实用户的操作，生成压力负载来测试web的性能。 </p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="软件测试发展状况"><a href="#软件测试发展状况" class="headerlink" title="软件测试发展状况"></a>软件测试发展状况</h2><h3 id="巨头的测试岗位信息3"><a href="#巨头的测试岗位信息3" class="headerlink" title="巨头的测试岗位信息3"></a>巨头的测试岗位信息<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></h3><ul>
+<li><p><strong>小米</strong></p>
+<p>Web前端测试开发</p>
+<p>岗位描述：</p>
+<p>​        负责内部工具各种网页产品的浏览器端和移动产品的各种Web View中的交互逻辑和业务逻辑开发维护。</p>
+<p>​        岗位要求：</p>
+<p>​      1、计算机相关专业本科及其以上学历，每周可实习三到四天；</p>
+<p>​      2、熟悉HTML、CSS、JavaScript及AJAX等Web前端技术，有前端<strong>开发经验</strong>者优先；</p>
+<p>​      3、至少熟悉C++/Java/python/PHP/Node.js或一种其他类似后台技术，对前后端联合开发的技术原理有全面认识；</p>
+<p>​      4、对算法、数据结构和计算机网络协议有一定了解；</p>
+<p>​      5、良好的沟通与表达能力、思路清晰，较强的动手能力与逻辑分析能力；</p>
+</li>
+<li><p><strong>京东</strong></p>
+<p>职位描述：</p>
+<p>工作职责：</p>
+<p>1、分析<strong>测试需求</strong>，编写<strong>测试用例</strong>，实施<strong>功能测试</strong>，生成<strong>质量报告</strong>，并给出改进意见；</p>
+<p>2、根据新技术方案编写专利方案；</p>
+<p>3、跟进专利申请流程，并对专利进行修改提审。</p>
+<p>任职要求：</p>
+<p>1、在读全日制本科及以上学历；</p>
+<p>2、熟悉WEB编程语言及相关技术者，如：JAVA、PHP、JavaScript/Ajax等；<br>3、熟悉Unix/Linux操作系统；熟练掌握Linux基本命令；<br>4、熟悉Oracle、SQLServer、MYSQL中至少一种数据库，能够熟练使用SQL语言。</p>
+</li>
+<li><p><strong>美团点评</strong></p>
+<p>任职要求</p>
+<p>1.良好的CS基础，熟练使用C家族/Java/Python/Ruby/JavaScript/Shell中至少一种；</p>
+<p>2.广泛的技术视野，对前沿技术和方法有极强的探索欲；</p>
+<p>3.严谨负责、思维缜密，有很强的主动性和逻辑思维能力，善于沟通合作，目标导向、注重结果；</p>
+<p>4.对提升应用交付质量及效率有浓厚兴趣。</p>
+</li>
+<li><p><strong>今日头条</strong></p>
+<p>职位描述：</p>
+<p>1、参与头条产品的研发与测试过程：产品需求、功能设计，产品可测性设计与反馈；</p>
+<p>2、系统测试，性能测试，产品效果评估评测试等多方面，致力于产品的技术可靠性和用户体验。</p>
+<p>职位要求：</p>
+<p>1、非常热爱互联网及其相关技术； </p>
+<p>2、逻辑思考能力强，思维缜密，有责任心与时间观念； </p>
+<p>3、对软件测试领域，对发现、分析和解决问题有浓厚的兴趣； </p>
+<p>4、具有团队合作精神及良好的口头与书面的交流能力； </p>
+<p>5、精通C/C++或Java/C#/Perl/Python等程序设计语言； </p>
+<p>6、每周能保证4天实习时间，持续3个月以上。</p>
+</li>
+<li><p><strong>腾讯</strong></p>
+<p>计算机软件相关专业本科或及以上学历；  </p>
+<p>掌握软件工程基础知识，熟悉软件测试理论和方法，逻辑思维能力强；  </p>
+<p>有良好的计算机理论基础，熟悉操作系统及网络的基本原理，至少掌握1门编程语言；  </p>
+<p>具备扎实的代码走读能力，熟悉各类常用debug类工具；  </p>
+<p>追求完美、工作细致、能站在用户的角度思考，坚持原则，具备良好的学习能力和质疑习惯。 </p>
+</li>
+</ul>
+<h3 id="软件测试的发展情况"><a href="#软件测试的发展情况" class="headerlink" title="软件测试的发展情况"></a>软件测试的发展情况</h3><ul>
+<li>具备有丰富的业务测试经验的测试人员</li>
+<li>具备开发能力和测试思维的测试人员 </li>
+</ul>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">该部分内容来自于<a href="https://www.wikipedia.org/" target="_blank" rel="noopener">维基百科</a></span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">图片来自于李红辉教案</span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;">该部分内容来自于<a href="www.shixiseng.com">实习僧</a></span><a href="#fnref:3" rev="footnote"> ↩</a></li></ol></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="洋仔 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎大家加入洋仔的生活馆</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/综述类/" rel="tag"># 综述类</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/07/hello/" rel="next" title="你好">
+                <i class="fa fa-chevron-left"></i> 你好
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/30/20180530/" rel="prev" title="这一路坎坷的挂面经历">
+                这一路坎坷的挂面经历 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5af12814ad30465d" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.gif"
+                alt="洋仔" />
+            
+              <p class="site-author-name" itemprop="name">洋仔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phdYang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ph.d_yang@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/yZhao44140852" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yZhao1034" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/5198838054" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/yang-zhao-95-74" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-gratipay"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ruanyifeng.com/" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件测试发展历程"><span class="nav-number">2.</span> <span class="nav-text">软件测试发展历程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件测试基本理论"><span class="nav-number">3.</span> <span class="nav-text">软件测试基本理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件可靠性"><span class="nav-number">3.1.</span> <span class="nav-text">软件可靠性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试的目标"><span class="nav-number">3.2.</span> <span class="nav-text">软件测试的目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试对象"><span class="nav-number">3.3.</span> <span class="nav-text">软件测试对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试的进程1"><span class="nav-number">3.4.</span> <span class="nav-text">测试的进程1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试类型"><span class="nav-number">3.5.</span> <span class="nav-text">测试类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试阶段"><span class="nav-number">3.6.</span> <span class="nav-text">测试阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试流程2"><span class="nav-number">3.7.</span> <span class="nav-text">软件测试流程2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件测试基本方法"><span class="nav-number">4.</span> <span class="nav-text">软件测试基本方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件测试自动化"><span class="nav-number">5.</span> <span class="nav-text">软件测试自动化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试自动化概念"><span class="nav-number">5.1.</span> <span class="nav-text">测试自动化概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试自动化流程"><span class="nav-number">5.2.</span> <span class="nav-text">测试自动化流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试自动化的原理和方法"><span class="nav-number">5.3.</span> <span class="nav-text">测试自动化的原理和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试工具"><span class="nav-number">5.4.</span> <span class="nav-text">软件测试工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件测试发展状况"><span class="nav-number">6.</span> <span class="nav-text">软件测试发展状况</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#巨头的测试岗位信息3"><span class="nav-number">6.1.</span> <span class="nav-text">巨头的测试岗位信息3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试的发展情况"><span class="nav-number">6.2.</span> <span class="nav-text">软件测试的发展情况</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">洋仔</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">26.2k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'VAqk50mRnUQd9pCYaWTxu6a0-gzGzoHsz',
+        appKey: 'rSL41zX6UpBeI7qzci23zzDn',
+        placeholder: '可以匿名；也可以告诉我你是谁',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
